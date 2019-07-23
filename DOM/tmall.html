@@ -5,24 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #container{
+        margin: 500px;
+    }
+    ul{
+        list-style: none;
+    }
+    #btns{
+        overflow: hidden;
+        position: absolute;
+        bottom: 10px;
+        right: 8px;
+    }
+    #btns li{
+        float: left;
+        width: 20px;
+        height: 20px;
+        background:rgba(0,0,0,0.5);
+        margin-right: 10px;
+        border-radius: 7px;
+        line-height: 20px;
+        text-align: center;
+        color: aliceblue;
+        cursor: pointer;
+        
+    }
+    #btns li.active{
+        background: red;
+        color: white;
+    }
+    #content div{
+        display: none;
+     }
+    #content .selected{
+        display: block;
+    }
+    #container{
+        width: 750px;
+        margin:100px auto;
+        position: relative;
+    }
+    
+    </style>
 </head>
 <body>
-    <div>
-        <ul>
-            <li>1</li>
+    <div id="container">
+        <ul id="btns">
+            <li class="active">1</li>
             <li>2</li>
             <li>3</li>
             <li>4</li>
             <li>5</li>
         </ul>
-        <div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
+        <div id="content">
+            <div class="selected"><img src="../DOM/img/1.jpg" alt=""></div>
+            <div><img src="../DOM/img/2.jpg" alt=""></div>
+            <div><img src="../DOM/img/3.jpg" alt=""></div>
+            <div><img src="../DOM/img/4.jpg" alt=""></div>
+            <div><img src="../DOM/img/5.jpg" alt=""></div>
         </div>
     </div>
+    <script>
+        var oUl = document.getElementById('btns');
+        var aLi = oUl.getElementsByTagName('li');
+        var oContent = document.getElementById('content');
+        var aDiv = oContent.getElementsByTagName('div');
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].index = i;
+            aLi[i].onclick = function(){
+                for(var j=0; j<aLi.length; j++){
+                    aLi[j].className = "";
+                    aDiv[j].className = "";
+                 }
+                this.className = "active"
+                aDiv[this.index].className = "selected";
+             }
+            
+        }
+    </script>
 </body>
 </html>
